@@ -11,7 +11,7 @@ const App: FC = ()=> {
   useEffect(() => {
     getUsers()
       .then(users => {
-        setUsers(users);
+        setUsers(users.data);
       });
     return () => {
       console.log('Users Fetching...');
@@ -22,7 +22,6 @@ const App: FC = ()=> {
 
   const clickHandler = (id:number) => {
     setUserId(id);
-    console.log(userId);
   }
 
   return (

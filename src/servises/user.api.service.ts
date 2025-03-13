@@ -1,18 +1,22 @@
 import IUser from "../model/IUser";
+import axios, {AxiosResponse} from "axios";
 
-const baseUrl = 'https://jsonplaceholder.typicode.com/users';
+// const baseUrl = 'https://jsonplaceholder.typicode.com/users';
 
-const getUsers= ():Promise<IUser[]> => {
-  return fetch(baseUrl)
-    .then(res => res.json())
+const axiosInstance = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com/users",
+  headers: {'Content-type': 'application/json'}
+});
+
+const getUsers = ():Promise<AxiosResponse<IUser[]>> => {
+  return axiosInstance.get('');
 }
 
-const getUser = (id:number):Promise<IUser> => {
-  return fetch(baseUrl + '/' + id)
-    .then(res => res.json())
+const getUser= async (id:number):Promise<AxiosResponse<IUser>> => {
+  return await axiosInstance.get('/'+id);
 }
 
 export {
   getUsers,
-  getUser
-};
+  getUser,
+}
