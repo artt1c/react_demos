@@ -8,6 +8,7 @@ const App: FC = ()=> {
     <>
       <Character />
       <Character />
+      <Character />
     </>
   );
 }
