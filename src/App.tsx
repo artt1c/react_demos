@@ -2,18 +2,17 @@ import React, {FC, useEffect, useState} from 'react';
 import './App.css';
 import IUser from "./model/IUser";
 import UserComponents from "./components/user/UserComponents";
+import {getUsers} from "./servises/user.api.service";
 
 const App: FC = ()=> {
 
   const [users, setUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(value => {
-        setUsers(value);
+    getUsers()
+      .then(users => {
+        setUsers(users);
       });
-
     return () => {
       console.log('Users Fetching...');
     }
