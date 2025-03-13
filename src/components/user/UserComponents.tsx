@@ -1,11 +1,12 @@
 import React, {FC, ReactNode} from 'react';
 import IUser from "../../model/IUser";
 
+type UserComponentsWithChildren<T> = T & {children?: ReactNode} & {clickHandler: (id:number) => void};
 
-type UserComponentsWithChildren<T> = T & {children?: ReactNode};
-const UserComponents:FC<UserComponentsWithChildren<IUser>> = ({id, name, children, username, email}) => {
+const UserComponents:FC<UserComponentsWithChildren<IUser>> = ({id, name, clickHandler}) => {
   return (
-    <div>{id} {name}</div>
+    <div>{id} - {name}
+      <button onClick={()=>clickHandler(id)}>chose</button></div>
   );
 };
 

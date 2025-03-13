@@ -19,9 +19,12 @@ const App: FC = ()=> {
     }
   }, []);
 
+  const [userId, setUserId] = useState<number>(0);
 
-
-  console.log('.')
+  const clickHandler = (id:number) => {
+    setUserId(id);
+    console.log(userId);
+  }
 
   return (
     <>
@@ -33,8 +36,11 @@ const App: FC = ()=> {
             name={name}
             username={username}
             email={email}
+
+            clickHandler = {clickHandler}
           />)
       }
+      <h2>{userId}</h2>
     </>
   );
 }
