@@ -6,8 +6,8 @@ const App: FC = ()=> {
 
   return (
     <>
-      <Character />
-      <Character />
+      <Character name={'bart'} img={'https://upload.wikimedia.org/wikipedia/uk/a/aa/Bart_simpson.png'}/>
+      <Character name={'homer'} img={'https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png'}/>
     </>
   );
 }
