@@ -6,6 +6,14 @@ const axiosInstance = axios.create({
   headers: {'Content-type': 'application/json'}
 });
 
+axiosInstance.interceptors.request.use(interceptedReqest => {
+  // interceptedReqest.headers.login = 'foo';
+  // interceptedReqest.headers.password = 'bar';
+  interceptedReqest.headers.token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+  console.log(interceptedReqest);
+  return interceptedReqest;
+})
+
 const getUsers = ():Promise<AxiosResponse<IUser[]>> => {
   return axiosInstance.get('/users');
 }
