@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import ContactComponent from "../contact/ContactComponent";
+import {IContact} from "../../models/IContact";
+import {getContacts} from "../../services/contact.api.services";
 
-const ContactsComponent = () => {
+const ContactsComponent:FC = () => {
 
-  const [contacts, setContacts] = useState([])
+  const [contacts, setContacts] = useState<IContact[]>([])
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
+    getContacts()
       .then(users => {
         setContacts(users);
       })

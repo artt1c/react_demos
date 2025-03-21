@@ -1,7 +1,12 @@
 import React, {FC} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
+import {IContact} from "../../models/IContact";
 
-const ContactComponent:FC<any> = ({contact}) => {
+type IProps = {
+  contact: IContact;
+}
+
+const ContactComponent:FC<IProps> = ({contact}) => {
 
   const navigateFunction = useNavigate();
 
