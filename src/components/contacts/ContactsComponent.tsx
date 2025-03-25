@@ -1,17 +1,16 @@
 import React, {FC, useEffect, useState} from 'react';
 import ContactComponent from "../contact/ContactComponent";
-import {IContact} from "../../models/IContact";
-import {getContacts} from "../../services/contact.api.services";
+import {IUserContact} from "../../models/IUserContact";
+import {userApiService} from "../../services/api.service";
 
 const ContactsComponent:FC = () => {
 
-  const [contacts, setContacts] = useState<IContact[]>([])
+  const [contacts, setContacts] = useState<IUserContact[]>([])
 
   useEffect(() => {
-    getContacts()
-      .then(users => {
-        setContacts(users);
-      })
+    userApiService
+      .getAllUsers()
+      .then(value => setContacts(value.data))
   }, []);
 
   return (

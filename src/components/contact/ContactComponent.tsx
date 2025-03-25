@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import {IContact} from "../../models/IContact";
+import {IUserContact} from "../../models/IUserContact";
 
 type IProps = {
-  contact: IContact;
+  contact: IUserContact;
 }
 
 const ContactComponent:FC<IProps> = ({contact}) => {
