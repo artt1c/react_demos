@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSearchParams} from "react-router-dom";
 
-const Pagination = () => {
+const PaginationComponent = () => {
 
   const [query, setQuery] = useSearchParams({page: '1'});
 
@@ -19,7 +19,7 @@ const Pagination = () => {
 
       <button onClick={() => {
         const page = query.get('page')
-        if (page) {
+        if (page && +page < 42) {
           let currentPage = +page
           currentPage++;
           setQuery({page: currentPage.toString()})
@@ -29,4 +29,4 @@ const Pagination = () => {
   );
 };
 
-export default Pagination;
+export default PaginationComponent;

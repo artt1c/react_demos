@@ -1,19 +1,14 @@
-import React, {useEffect} from 'react';
-import Pagination from "../components/pagination/Pagination";
-import {useSearchParams} from "react-router-dom";
+import React from 'react';
+import PaginationComponent from "../components/pagination/PaginationComponent";
+import CharactersComponent from "../components/characters/CharactersComponent";
 
 const MainLayout = () => {
-  
-  const [query] = useSearchParams();
 
-  useEffect(() => {
-    console.log(query.get('page'));
-  }, [query]);
 
   return (
     <div>
-
-      <Pagination/>
+      <CharactersComponent/>
+      <PaginationComponent/>
     </div>
   );
 };
