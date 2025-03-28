@@ -6,7 +6,6 @@ import {ICharacter} from "../models/ICharacter";
 import {charecterService} from "../services/api.service";
 
 const MainLayout = () => {
-  // todo disables paginations
   const [query] = useSearchParams({page: '1'});
 
   const [charactersState, setCharactersState] = useState<ICharacter[]>([])
