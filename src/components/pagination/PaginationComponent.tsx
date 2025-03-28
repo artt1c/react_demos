@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useSearchParams} from "react-router-dom";
 
-const PaginationComponent = () => {
+type IDisableProps = {
+  prev: boolean;
+  next: boolean;
+}
+
+const PaginationComponent:FC<IDisableProps> = ({prev, next}) => {
 
   const [query, setQuery] = useSearchParams({page: '1'});
 
@@ -9,22 +14,22 @@ const PaginationComponent = () => {
     <div>
       <button onClick={() => {
         const page = query.get('page')
-        if (page && +page > 1) {
+        if (page) {
           let currentPage = +page
           currentPage--;
           setQuery({page: currentPage.toString()})
 
         }
-      }}>prev</button>
+      }} disabled={prev}>prev</button>
 
       <button onClick={() => {
         const page = query.get('page')
-        if (page && +page < 42) {
+        if (page) {
           let currentPage = +page
           currentPage++;
           setQuery({page: currentPage.toString()})
         }
-      }}>next</button>
+      }} disabled={next}>next</button>
     </div>
   );
 };
