@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useState} from 'react';
+import React, {FC, useCallback, useMemo, useState} from 'react';
 import './App.css';
 import Menu from "./components/menu/Menu";
 import User from "./components/user/User";
@@ -10,13 +10,17 @@ const App: FC = ()=> {
     setId(prevState => ++prevState)
   }
 
-  const someFunction = useCallback(() => {
-    console.log('asd')
-  }, [])
+  const [menuItem1, setMenuItem1] = useState<string>('users')
+  const [menuItem2, setMenuItem2] = useState<string>('posts')
+  const [menuItem3, setMenuItem3] = useState<string>('comments')
+
+  const links = useMemo(() => {
+    return [menuItem1, menuItem2, menuItem3];
+  }, [menuItem1, menuItem2, menuItem3]);
 
   return (
     <>
-      <Menu someFunction={someFunction}/>
+      <Menu links={links}/>
       <User id={id}/>
       <button onClick={increment}>Increment Id</button>
     </>
