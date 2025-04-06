@@ -1,36 +1,45 @@
 import React from "react";
 
-type MyProps = {
-  message: string;
+interface User {
+  id:number,
+  name:string
 }
 
-type MyState = {
-  count: number;
+type MyType = {
+  users: User[]
 }
 
-export default class SomeComponent extends React.Component<MyProps, MyState> {
+class SomeComponent extends React.Component<{}, MyType> {
 
-  // state: MyState = {count: 0};
+  state: MyType = {
+    users: []
+  }
 
-  constructor(props: MyProps) {
-    super(props);
-    this.state = {count: 0};
+  componentDidMount() {
+    console.log('mount')
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(value => {
+        this.setState({users: value})
+      })
+  }
+
+  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<MyType>, snapshot?: any) {
+    console.log('update')
+    console.log(prevState)
   }
 
   render() {
     return (
-      <div>
-
-        <h2>some component {this.props.message}</h2>
-        <h3>{this.state.count}</h3>
-        <button onClick={() => {
-          this.setState((state) => {
-            return {
-              count: state.count + 1
-            }
-          })
-        }}>increment</button>
-      </div>
+      <ul>
+        {
+          this.state.users.map((user: User) => (<li key={user.id}>{user.name}</li>))
+        }
+      </ul>
     );
   }
+
+
 }
+
+export default SomeComponent

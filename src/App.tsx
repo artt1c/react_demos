@@ -5,7 +5,7 @@ import SomeComponent from "./components/SomeComponent";
 const App: FC = ()=> {
   return (
     <>
-      <SomeComponent message={'hello'}/>
+      <SomeComponent/>
     </>
   );
 }
