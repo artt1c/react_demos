@@ -1,9 +1,15 @@
 import React from 'react';
+import Post from "../post/Post";
+import {useContextProvider} from "../../context/ContextsProvider";
 
 const Posts = () => {
+  const {postStore: {allPosts}} = useContextProvider();
+
   return (
     <div>
-      PostsComponent
+      {
+        allPosts.map((post) => (<Post key={post.id} post={post}/>))
+      }
     </div>
   );
 };

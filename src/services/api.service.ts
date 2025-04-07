@@ -9,13 +9,13 @@ const axiosInstance = axios.create({
 
 const userService = {
   getUsers: async () => {
-    return await axiosInstance.get<IUser>("/users");
+    return await axiosInstance.get<IUser[]>("/users");
   }
 }
 
 const postService = {
   getPosts: async () => {
-    return await axiosInstance.get<IPost>("/posts");
+    return await axiosInstance.get<IPost[]>("/posts");
   }
 }
 

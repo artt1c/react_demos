@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {UserWithPostsType} from "../../models/UserWithPostsType";
 
-const UserPosts = () => {
+interface IProps {
+  items: UserWithPostsType[]
+}
+
+const UserPosts:FC<IProps> = ({items}) => {
+
   return (
     <div>
-      USerPostsComponent
+      {items.map(item => (
+        <div key={item.id}>
+          {item.name}
+          <ul>
+            {item.posts.map((post) => (<li key={post.id}>{post.title}</li>))}
+          </ul>
+      </div>))}
     </div>
   );
 };
