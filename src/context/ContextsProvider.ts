@@ -5,6 +5,7 @@ import {createContext, useContext} from "react";
 type StoreType = {
   userStorage: {
     allUsers: IUser[];
+    setFavoriteUser: (obj:IUser) => void;
   },
   postStore: {
     allPosts: IPost[];
@@ -13,7 +14,8 @@ type StoreType = {
 
 const defaultValue:StoreType = {
   userStorage: {
-    allUsers:[]
+    allUsers:[],
+    setFavoriteUser: () => {}
   },
   postStore: {
     allPosts:[]
