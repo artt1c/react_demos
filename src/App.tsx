@@ -1,46 +1,26 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import './App.css';
 import {Outlet} from "react-router-dom";
 import Menu from "./components/menu/Menu";
-import {Context} from "./context/ContextsProvider";
-import {postService, userService} from "./services/api.service";
-import {IUser} from "./models/IUser";
-import {IPost} from "./models/IPost";
+import {userService} from "./services/api.service";
+import {useStore} from "./context/store";
+
 
 const App: FC = ()=> {
 
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [posts, setPosts] = useState<IPost[]>([]);
-  const [favoriteUserState, setFavoriteUserState] = useState<IUser | null>(null);
+  const {userStore} = useStore();
 
   useEffect(() => {
-    userService.getUsers().then(value => setUsers(value.data));
-    postService.getPosts().then(value => setPosts(value.data));
+    userService.getUsers().then(value => userStore.loadingUsers(value.data))
   }, []);
-
-  const setFavoriteUser = (obj:IUser) => setFavoriteUserState(obj)
 
   return (
     <>
-      <Context.Provider value={{
-        userStorage: {
-          allUsers: users,
-          setFavoriteUser: (obj:IUser) => {
-            setFavoriteUser(obj)
-          }
-        },
-        postStore: {
-          allPosts: posts
-        }
-      }}>
-
         <Menu/>
         <Outlet/>
         <hr/>
-        {favoriteUserState && <div>{favoriteUserState.email}</div>}
+        {userStore.favoriteUser && <div>{userStore.favoriteUser.email}</div>}
         <hr/>
-
-      </Context.Provider>
     </>
   );
 }
